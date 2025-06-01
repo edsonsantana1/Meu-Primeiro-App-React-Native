@@ -18,6 +18,8 @@ import {
 import { NotificationsContext } from './NotificationsContext';
 import { TasksContext } from '../contexts/TasksContext';
 
+
+
 export default function HomeScreen() {
   const { addNotification } = useContext(NotificationsContext);
   const { tasks, favorites, toggleFavorite, addTask, deleteTask } = useContext(TasksContext);
@@ -179,6 +181,31 @@ export default function HomeScreen() {
     </View>
   );
 }
+
+//att1
+function MainTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'Home') iconName = focused ? 'home' : 'home-outline';
+          else if (route.name === 'Profile') iconName = focused ? 'account' : 'account-outline';
+          else if (route.name === 'Notifications') iconName = focused ? 'bell' : 'bell-outline';
+          return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: '#6200ee',
+        tabBarInactiveTintColor: 'gray',
+        headerShown: false,
+      })}
+    >
+      <Tab.Screen name="Home" component={HomeStack} />  {/* <-- aqui */}
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Notifications" component={NotificationsScreen} />
+    </Tab.Navigator>
+  );
+}
+
 
 // mantenha seus estilos existentes
 

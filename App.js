@@ -14,7 +14,10 @@ import LoginScreen from './screens/LoginScreen';
 import FavoritesScreen from './screens/FavoritesScreen'; // ✅ import tela de favoritos
 import { AuthContext, AuthProvider } from './contexts/AuthContext';
 import { TasksProvider } from './contexts/TasksContext';
+import { createStackNavigator } from '@react-navigation/stack';
+import IPInfoScreen from './screens/IPInfoScreen'; // sua tela de IP
 
+const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -63,6 +66,11 @@ function AppContent() {
             component={SettingsScreen}
             options={{ title: 'Configurações', headerTitle: '' }}
           />
+          <Drawer.Screen
+            name="IPInfo"
+            component={IPInfoScreen}
+            options={{ title: 'Informações de IP', headerTitle: '' }}
+  />
         </Drawer.Navigator>
       ) : (
         <LoginScreen />
